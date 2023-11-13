@@ -12,6 +12,20 @@ namespace upc {
 
     for (unsigned int l = 0; l < r.size(); ++l) {
   		/// \TODO Compute the autocorrelation r[l]
+      /** \FET
+       * Implementem \f$ r[l] = \frac{1}{N} \sum_0^N ... \f$
+       * 
+       * - Inicialitzem...
+       * - Acumulem...
+       * - Dividim...
+       */ 
+      r[l] = 0;
+      for (unsigned int n = 0; n < x.size() - l; n++)
+      {
+        r[l] = r[l] + x[n]*x[n+l];
+      }
+      r[l] = r[l]/x.size();
+      
     }
 
     if (r[0] == 0.0F) //to avoid log() and divide zero 
