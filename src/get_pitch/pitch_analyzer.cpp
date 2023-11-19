@@ -14,10 +14,9 @@ namespace upc {
   		/// \TODO Compute the autocorrelation r[l]
       /** \FET
        * Implementem \f$ r[l] = \frac{1}{N} \sum_0^N ... \f$
-       * 
-       * - Inicialitzem...
-       * - Acumulem...
-       * - Dividim...
+       * - Inicialitzem l'autocorrelació a 0
+       * - Acumulem els productes creuats \f$ sum_{n=0}^{N-l} x[n]x[n+l] \f$
+       * - Dividim pel nombre de mostres 
        */ 
       r[l] = 0;
       for (unsigned int n = 0; n < x.size() - l; n++)
@@ -67,6 +66,8 @@ namespace upc {
     if(rmaxnorm > 0.3) return false; 
     return true;
   }
+
+  // PASAR LOS VALORES COMO ARGUMENTOS QUE HAYAN PASADO POR LAS LÍNEAS DE COMANDO
 
   float PitchAnalyzer::compute_pitch(vector<float> & x) const {
     if (x.size() != frameLen)

@@ -55,7 +55,7 @@ int main(int argc, const char *argv[]) {
     return -2;
   }
 
-  // hacer normalización de la potencia
+  // hacer normalización de la potencia (x)
 
   int n_len = rate * FRAME_LEN;
   int n_shift = rate * FRAME_SHIFT;
