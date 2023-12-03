@@ -52,7 +52,6 @@ namespace upc {
 	///
     bool unvoiced(float pot, float r1norm, float rmaxnorm, float zcr) const;
 
-
   public:
     PitchAnalyzer(	unsigned int fLen,			///< Frame length in samples
 					unsigned int sFreq,			///< Sampling rate in Hertzs

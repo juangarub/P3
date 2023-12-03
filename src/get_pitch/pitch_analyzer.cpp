@@ -15,7 +15,7 @@ namespace upc
     for (unsigned int l = 0; l < r.size(); ++l)
     {
       /// \TODO Compute the autocorrelation r[l]
-      /** \FET
+      /** \DONE
        * Implementem \f$r[l] = \frac{1}{N} \sum_0^N ...\f$
        * - Inicialitzem l'autocorrelació a 0
        * - Acumulem els productes creuats  \f$\sum_{n=0}^{N-l} x[n]x[n+l]\f$
@@ -44,11 +44,14 @@ namespace upc
     {
     case HAMMING:
       /// \TODO Implement the Hamming window
+      /** \DONE
+       * Ventana de Hamming correctamente implementada
+      */
       for (unsigned int i = 0; i < frameLen; i++)
       {
         window[i] = 0.54 - 0.46 * ((2 * M_PI * i) / (frameLen - 1));
       }
-      break; /// \DONE Ventana de Hamming correctamente implementada
+      break; 
 
     case RECT:
     default:
@@ -56,8 +59,7 @@ namespace upc
     }
   }
 
-  void PitchAnalyzer::set_f0_range(float min_F0, float max_F0)
-  {
+  void PitchAnalyzer::set_f0_range(float min_F0, float max_F0) {
     npitch_min = (unsigned int)samplingFreq / max_F0;
     if (npitch_min < 2)
       npitch_min = 2; // samplingFreq/2
@@ -74,6 +76,12 @@ namespace upc
     /// \TODO Implement a rule to decide whether the sound is voiced or not.
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
+    /// \DONE
+    /// Se puede saber su sonoridad por la:
+    /// *  -Energia de la senal
+    /// *   -Coeficiente de correlaccion R(1)/R(0) > Th1
+    /// *  -Coeficiente de correlaccion R(lag)/R(0) > Th2
+    /// *  -ZCR
     if (rmaxnorm < this->u_rmax || r1norm < 0.1 || zcr > this->u_zcr)
     {
       return true;
@@ -109,11 +117,6 @@ namespace upc
       }
     }
   }
-  /// Se puede saber su sonoridad por la:
-  ///    -Energia de la seÃ±al
-  ///    -Coeficiente de correlaccion R(1)/R(0) > Th1
-  ///    -Coeficiente de correlaccion R(lag)/R(0) > Th2
-  ///    -ZCR
 
   float PitchAnalyzer::compute_zcr(vector<float> &x, unsigned int N, unsigned int fm) const
   {
