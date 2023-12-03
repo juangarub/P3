@@ -52,7 +52,7 @@ Ejercicios básicos
 		Aunque puede usar el propio Wavesurfer para obtener la representación, se valorará
 	 	el uso de alternativas de mayor calidad (particularmente Python).
 
-	![Uploading Captura de pantalla 2023-12-03 a las 22.41.51.png…]()
+	<img width="883" alt="Captura de pantalla 2023-12-03 a las 22 41 51" src="https://github.com/juangarub/P3/assets/118903051/eacd16db-5f5d-4d9c-884d-9cb7c1a02d05">
 
 En la gráfica superior podemos observar la señal de audio 'prueba.wav' junto con su potencia, pitch de wavesurfer y pitch obtenido por nosotros. Como se puede ver en los sonidos sonoros, tanto la potencia como el pitch tienen calores más elevados. Hemos tenido algunas complicaciones a la hora de representar el pitch creado por nosotros mismos
 
