@@ -15,6 +15,9 @@ Ejercicios básicos
 
    * Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
 
+<img width="517" alt="Captura de pantalla 2023-12-04 012927" src="https://github.com/juangarub/P3/assets/84085478/b47da4ae-de7f-43d2-b124-054c71d01b35">
+
+
    * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
      unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
 	 autocorrelación de la señal y la posición del primer máximo secundario.
@@ -22,10 +25,20 @@ Ejercicios básicos
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la biblioteca matplotlib de Python.
 
+<img width="556" alt="Captura de pantalla 2023-12-03 233218" src="https://github.com/juangarub/P3/assets/84085478/708d5214-f3d7-4c79-b837-3e8401e03291">
+<img width="856" alt="Captura de pantalla 2023-12-03 231216" src="https://github.com/juangarub/P3/assets/84085478/0cdb8d74-501e-42c3-8b43-547328250538">
+
+
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
 
+     <img width="574" alt="Captura de pantalla 2023-12-04 013351" src="https://github.com/juangarub/P3/assets/84085478/4e4f0538-449e-4d32-b515-66719bce8d9c">
+
+
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
+
+<img width="384" alt="Captura de pantalla 2023-12-04 035908" src="https://github.com/juangarub/P3/assets/84085478/c8d68c0e-a494-400c-b554-626aa6d04c17">
+
 
    * Puede serle útil seguir las instrucciones contenidas en el documento adjunto `código.pdf`.
 
@@ -60,6 +73,12 @@ En la gráfica superior podemos observar la señal de audio 'prueba.wav' junto c
   * Optimice los parámetros de su sistema de estimación de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`..
+
+<img width="447" alt="Captura de pantalla 2023-12-04 034050" src="https://github.com/juangarub/P3/assets/84085478/364ff286-302a-4656-a68f-ce7be1a80eaf">
+
+
+<img width="437" alt="Captura de pantalla 2023-12-04 033517" src="https://github.com/juangarub/P3/assets/84085478/0c0433eb-6b48-4a01-84ab-4ee1e89cb857">
+
 
 Ejercicios de ampliación
 ------------------------
