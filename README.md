@@ -25,7 +25,12 @@ Ejercicios básicos
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la biblioteca matplotlib de Python.
 
+Este es el código Matlab que hemos utilizado para visualizar las gráficas de la señal:
+
 <img width="556" alt="Captura de pantalla 2023-12-03 233218" src="https://github.com/juangarub/P3/assets/84085478/708d5214-f3d7-4c79-b837-3e8401e03291">
+
+En esta, podemos encontrar una muestra de 30ms de la señal y su autocorrelación. Encontramos su frecuencia f0 mediante el periodo (9.02ms), lo cual nos da una frecuencia de 110Hz. Esta se corresponde con las 440 muestras del pico de la correlación para una señal con una frecuencia de muestreo de 48kHz.
+
 <img width="856" alt="Captura de pantalla 2023-12-03 231216" src="https://github.com/juangarub/P3/assets/84085478/0cdb8d74-501e-42c3-8b43-547328250538">
 
 
@@ -39,6 +44,7 @@ Ejercicios básicos
 
 <img width="384" alt="Captura de pantalla 2023-12-04 035908" src="https://github.com/juangarub/P3/assets/84085478/c8d68c0e-a494-400c-b554-626aa6d04c17">
 
+Se han establecido los valores adecuados para los parámetros en pitch_analyzer.h.
 
    * Puede serle útil seguir las instrucciones contenidas en el documento adjunto `código.pdf`.
 
@@ -76,6 +82,15 @@ En la gráfica superior podemos observar la señal de audio 'prueba.wav' junto c
 
 <img width="447" alt="Captura de pantalla 2023-12-04 034050" src="https://github.com/juangarub/P3/assets/84085478/364ff286-302a-4656-a68f-ce7be1a80eaf">
 
+Este es el primer resultado de FScore conseguido.
+
+En un intento de mejorarlo, hemos incorporado el center clipping como técnica de preprocesamiento y un filtro de mediana de tres elementos para el postprocesado.
+
+En nuestro esfuerzo por aumentar la puntuación global, adoptamos una nueva aproximación para la función unvoiced y la enriquecimos con la tasa de cruces por cero. Para determinar si una sección de audio es sonora o sorda, hemos establecido cuatro criterios: el umbral basado en la potencia de la señal, el umbral basado en la autocorrelación normalizada de 1, el umbral basado en la autocorrelación en su punto máximo, y el umbral en los cruces por cero.
+
+Así, si la potencia de la señal supera su umbral correspondiente, esto indica que la sección es sonora, dado que los sonidos sonoros poseen más energía que los sordos. Respecto a la autocorrelación normalizada, una autocorrelación cercana a cero apunta a una sección sorda. Si el máximo de la autocorrelación excede su umbral, sugiere periodicidad y, por ende, que la sección es sonora. Finalmente, en cuanto a los cruces por cero, un número bajo de estos sugiere que la sección es sonora, ya que los sonidos sonoros presentan una señal más constante y, por tanto, menos cruces por cero.
+
+Este es el nuevo FScore, posterior a los ajustes realizados:
 
 <img width="437" alt="Captura de pantalla 2023-12-04 033517" src="https://github.com/juangarub/P3/assets/84085478/0c0433eb-6b48-4a01-84ab-4ee1e89cb857">
 
@@ -92,6 +107,9 @@ Ejercicios de ampliación
 
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
+
+<img width="638" alt="Captura de pantalla 2023-12-04 042938" src="https://github.com/juangarub/P3/assets/84085478/ab9cfb85-e603-4dad-98f0-ca78f580a223">
+
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de estimación
   de pitch.
@@ -117,6 +135,17 @@ Ejercicios de ampliación
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
   la longitud del filtro.
    
+Hemos elegido usar el center clipping como técnica de preprocesado y el filtro de mediana como técnica de postprocesado.
+
+Este es el código de ambas con las explicaciones pertinentes:
+
+<img width="312" alt="Captura de pantalla 2023-12-04 043505" src="https://github.com/juangarub/P3/assets/84085478/a9bb637a-df87-461f-867e-3ad202545d79">
+
+Probamos con la aplicación de un límite específico, ajustando la señal hacia arriba o hacia abajo si supera un valor absoluto determinado. Luego, intentamos establecer un límite por debajo del cual, si la señal es inferior, la consideramos como cero. Observamos que el enfoque más simple es establecer un umbral único bajo el cual la señal se asume como cero. 
+
+<img width="482" alt="Captura de pantalla 2023-12-04 043745" src="https://github.com/juangarub/P3/assets/84085478/c42f9292-18e6-4232-9e5a-75992b7f1de9">
+
+Para el postprocesado, optamos por emplear un filtro de mediana con tres elementos. Este método nos ayuda a eliminar errores conocidos como dobles o de mitad. La implementación consiste en tomar una muestra, junto con la anterior y la siguiente, ordenarlas de menor a mayor y seleccionar la del medio. Este procedimiento se repite para todas las muestras de la señal. Dado que el pitch debe presentar variaciones sutiles, este postprocesado nos permite corregir cualquier cambio abrupto que surja.
 
 Evaluación *ciega* del estimador
 -------------------------------
